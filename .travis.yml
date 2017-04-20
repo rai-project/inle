@@ -16,7 +16,11 @@ before_install:
   - sudo apt-get install libzmq4 libzmq4-dev
 install:
   - glide install
-  - go build
+  - go get github.com/mjibson/esc
+  - go get github.com/ahmetb/govvv
+  - go get github.com/franciscocpg/gox
+  - go get github.com/tcnksm/ghr
+  - go get github.com/sanbornm/go-selfupdate
 script:
   - echo "Skip tests..."
 after_script:
