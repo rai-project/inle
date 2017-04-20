@@ -54,7 +54,11 @@ func (k *Kernel) HandleExecuteRequest(receipt message.Receipt) error {
 		var outContent OutputMsg
 		outContent.Execcount = k.ExecCounter
 		outContent.Data = make(map[string]string)
-		outContent.Data["text/plain"] = fmt.Sprint("Hello.... got " + code)
+
+		// lng, _ := lang.Detect(code)
+		// pp.Println("lng = ", string(lng))
+		// _ = lng
+		outContent.Data["text/plain"] = fmt.Sprint("Hello.... got " + code + " ... detected the langauge to be ")
 		outContent.Metadata = make(map[string]interface{})
 		out.Content = outContent
 		receipt.SendResponse(receipt.Connection.IOPubSocket, out)

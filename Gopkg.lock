@@ -1,0 +1,235 @@
+memo = "cd1464ff64c8f8d9213ec94e2a9b3958a2767e348a49fa4b6c00f9a45c867250"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/GeertJohan/go-sourcepath"
+  packages = ["."]
+  revision = "83e8b8723a9bf39481216e80575f4854c63ece4a"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/Sirupsen/logrus"
+  packages = ["."]
+  revision = "10f801ebc38b33738c9d17d50860f484a0988ff5"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/Unknwon/com"
+  packages = ["."]
+  revision = "0db4a625e949e956314d7d1adea9bf82384cc10c"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/cpuguy83/go-md2man"
+  packages = ["md2man"]
+  revision = "a65d4d2de4d5f7c74868dfa9b202a3c8be315aaa"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "346938d642f2ec3594ed81d874461961cd0faa76"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/facebookgo/stack"
+  packages = ["."]
+  revision = "751773369052141c013c6e827a71e8f35c07879c"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/fatih/color"
+  packages = ["."]
+  revision = "9131ab34cf20d2f6d83fdc67168a5430d1c7dc23"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/fatih/structs"
+  packages = ["."]
+  revision = "a720dfa8df582c51dee1b36feabb906bde1588bd"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/fsnotify/fsnotify"
+  packages = ["."]
+  revision = "4da3e2cfbabc9f751898f250b49f2439785783a1"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/hashicorp/hcl"
+  packages = [".","hcl/ast","hcl/parser","hcl/scanner","hcl/strconv","hcl/token","json/parser","json/scanner","json/token"]
+  revision = "630949a3c5fa3c613328e1b8256052cbc2327c9b"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/inconshreveable/mousetrap"
+  packages = ["."]
+  revision = "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/k0kubun/pp"
+  packages = ["."]
+  revision = "d1532fc5d94ecdf2da29e24d7b99721f3287de4a"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/magiconair/properties"
+  packages = ["."]
+  revision = "51463bfca2576e06c62a8504b5c0f06d61312647"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mattn/go-colorable"
+  packages = ["."]
+  revision = "acb9493f2794fd0f820de7a27a217dafbb1b65ea"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mattn/go-isatty"
+  packages = ["."]
+  revision = "57fdcb988a5c543893cc61bce354a6e24ab70022"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mitchellh/go-homedir"
+  packages = ["."]
+  revision = "b8bc1bf767474819792c23f32d8286a45736f1c6"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mitchellh/mapstructure"
+  packages = ["."]
+  revision = "53818660ed4955e899c0bcafa97299a388bd7c8e"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/pebbe/zmq4"
+  packages = ["."]
+  revision = "7157c0d6df4e6bfcae60a6f20cffaee88ac1ab30"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/pelletier/go-buffruneio"
+  packages = ["."]
+  revision = "c37440a7cf42ac63b919c752ca73a85067e05992"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/pelletier/go-toml"
+  packages = ["."]
+  revision = "fe206efb84b2bc8e8cfafe6b4c1826622be969e3"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "bfd5150e4e41705ded2129ec33379de1cb90b513"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/rai-project/cmd"
+  packages = ["."]
+  revision = "b5fd779c331d36bb70042ab251ab6b3eb1395bda"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/rai-project/config"
+  packages = ["."]
+  revision = "71e70e8251d09a4f12167441e07fbdc23a2f60d5"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/rai-project/godotenv"
+  packages = ["."]
+  revision = "25114fbba6d6857789508f45bcdd7e904315dedb"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/rai-project/logger"
+  packages = ["."]
+  revision = "4ed6c39469666d40ceb10fe7d47ef2705d231488"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/rai-project/uuid"
+  packages = ["."]
+  revision = "61f5bfc8807ea6e8d98f0b26e326ee1241768e11"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/rai-project/vipertags"
+  packages = ["."]
+  revision = "3fc24e75d776bc01e3e9ab3795378f0f60d816f1"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/russross/blackfriday"
+  packages = ["."]
+  revision = "b253417e1cb644d645a0a3bb1fa5034c8030127c"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/satori/go.uuid"
+  packages = ["."]
+  revision = "b061729afc07e77a8aa4fad0a2fd840958f1942a"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/sanitized_anchor_name"
+  packages = ["."]
+  revision = "1dba4b3954bc059efc3991ec364f9f9a35f597d2"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/spf13/afero"
+  packages = [".","mem"]
+  revision = "9be650865eab0c12963d8753212f4f9c66cdcf12"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/spf13/cast"
+  packages = ["."]
+  revision = "acbeb36b902d72a7a4c18e8f3241075e7ab763e4"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/spf13/cobra"
+  packages = [".","doc"]
+  revision = "b6cb3958937245a12d4d7728be080a6c758f4136"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/spf13/jwalterweatherman"
+  packages = ["."]
+  revision = "fa7ca7e836cf3a8bb4ebf799f472c12d7e903d66"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/spf13/pflag"
+  packages = ["."]
+  revision = "2300d0f8576fe575f71aaa5b9bbe4e1b0dc2eb51"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/spf13/viper"
+  packages = ["."]
+  revision = "0967fc9aceab2ce9da34061253ac10fb99bba5b2"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/sys"
+  packages = ["unix"]
+  revision = "f3918c30c5c2cb527c0b071a27c35120a6c0719a"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/text"
+  packages = ["internal/gen","internal/triegen","internal/ucd","transform","unicode/cldr","unicode/norm"]
+  revision = "f4b4367115ec2de254587813edaa901bc1c723a8"
+
+[[projects]]
+  branch = "v2"
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  revision = "cd8b52f8269e0feb286dfeef29f8fe4d5b397e0b"

@@ -1,0 +1,44 @@
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/Sirupsen/logrus"
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/Unknwon/com"
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/fatih/color"
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/pebbe/zmq4"
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/pkg/errors"
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/rai-project/cmd"
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/rai-project/config"
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/rai-project/logger"
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/rai-project/uuid"
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/spf13/cobra"
+
+[[dependencies]]
+  branch = "master"
+  name = "github.com/spf13/viper"
