@@ -18,6 +18,6 @@ func (k *Kernel) HandleShutdownRequest(receipt message.Receipt) error {
 	restart := content["restart"].(bool)
 	reply.Content = ShutdownReply{restart}
 	receipt.SendResponse(receipt.Connection.ShellSocket, reply)
-	log.Println("Shutting down in response to shutdown_request")
+	log.Debug("Shutting down in response to shutdown_request")
 	return nil
 }
