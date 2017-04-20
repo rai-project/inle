@@ -1,4 +1,4 @@
-package lang
+package openacc
 
 import (
 	"github.com/Sirupsen/logrus"
@@ -13,6 +13,6 @@ var (
 
 func init() {
 	config.AfterInit(func() {
-		log = logger.New().WithField("pkg", "inle/pkg/lang")
+		log = logger.New().WithField("pkg", "inle/pkg/language/openacc")
 	})
 }
