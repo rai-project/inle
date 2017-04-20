@@ -1,0 +1,12 @@
+{
+    "argv": [
+		  "go",
+      "run",
+      "/Users/abduld/.gvm/pkgsets/go1.8/global/src/github.com/rai-project/inle/main.go",
+      "notebook",
+    	"{connection_file}"
+    ],
+    "display_name": "Inle",
+    "language": "rai",
+    "name": "rai"
+}
