@@ -71,7 +71,11 @@ func (msg Message) ToWire(signkey []byte) (msgparts [][]byte) {
 // NewFromWire translates a multipart ZMQ messages received from a socket into
 // a Message struct and a slice of return identities. This includes verifying the
 // message signature.
-func FromWire(msgparts [][]byte, signkey []byte) (msg *Message, identities [][]byte, err error) {
+func FromWire(msgparts [][]byte, signkey []byte) (*Message, [][]byte, error) {
+
+	msg := &Message{}
+	identities := [][]byte{}
+	var err error
 
 	i := 0
 	for string(msgparts[i]) != "<IDS|MSG>" {
@@ -88,16 +92,19 @@ func FromWire(msgparts [][]byte, signkey []byte) (msg *Message, identities [][]b
 			mac.Write(msgpart)
 		}
 		signature := make([]byte, hex.DecodedLen(len(msgparts[i+1])))
-		hex.Decode(signature, msgparts[i+1])
+		_, err := hex.Decode(signature, msgparts[i+1])
+		if err != nil {
+			return nil, nil, err
+		}
 		if !hmac.Equal(mac.Sum(nil), signature) {
-			return msg, nil, err
+			return nil, nil, InvalidSignatureError
 		}
 	}
 	json.Unmarshal(msgparts[i+2], &msg.Header)
 	json.Unmarshal(msgparts[i+3], &msg.ParentHeader)
 	json.Unmarshal(msgparts[i+4], &msg.Metadata)
 	json.Unmarshal(msgparts[i+5], &msg.Content)
-	return
+	return msg, identities, err
 }
 
 // New creates a new Message to respond to a parent message. This includes setting

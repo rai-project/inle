@@ -6,6 +6,12 @@
 brew install zeromq --with-libsodium
 ```
 
+## Run
+
+```
+jupyter notebook --debug --no-browser -y
+```
+
 ## Install
 
 ```

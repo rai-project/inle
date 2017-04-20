@@ -18,9 +18,6 @@ var (
 
 var RootCmd = &cobra.Command{
 	Use: "inle",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return nil
-	},
 }
 
 func Execute() {

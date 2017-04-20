@@ -51,43 +51,45 @@ func (k *Kernel) Start() error {
 	var msgparts [][]byte
 	var polled []zmq.Polled
 	// Message receiving loop:
-	for {
-		polled, err = pi.Poll(-1)
-		if err != nil {
-			log.WithError(err).Error("failed to poll item")
-			continue
-		}
-		switch {
-		case polled[0].Events&zmq.POLLIN != 0: // shell socket
-			msgparts, _ = polled[0].Socket.RecvMessageBytes(0)
-			msg, ids, err := message.FromWire(msgparts, conn.Key)
+	go func() {
+		for {
+			polled, err = pi.Poll(-1)
 			if err != nil {
-				log.WithError(err).Error("cannot read message from wire")
+				log.WithError(err).Error("failed to poll item")
 				continue
 			}
-			logger.Println("received shell message: ", msg)
-			k.HandleShellMsg(message.Receipt{
-				Message:    *msg,
-				Identities: ids,
-				Connection: conn,
-			})
-		case polled[1].Events&zmq.POLLIN != 0: // stdin socket - not implemented.
-			polled[1].Socket.RecvMessageBytes(0)
-		case polled[2].Events&zmq.POLLIN != 0: // control socket - treat like shell socket.
-			msgparts, _ = polled[2].Socket.RecvMessageBytes(0)
-			msg, ids, err := message.FromWire(msgparts, conn.Key)
-			if err != nil {
-				log.WithError(err).Error("cannot read message from wire")
-				continue
+			switch {
+			case polled[0].Events&zmq.POLLIN != 0: // shell socket
+				msgparts, _ = polled[0].Socket.RecvMessageBytes(0)
+				msg, ids, err := message.FromWire(msgparts, conn.Key)
+				if err != nil {
+					log.WithError(err).Error("cannot read message from wire")
+					continue
+				}
+				logger.Println("received shell message: ", msg)
+				k.HandleShellMsg(message.Receipt{
+					Message:    *msg,
+					Identities: ids,
+					Connection: conn,
+				})
+			case polled[1].Events&zmq.POLLIN != 0: // stdin socket - not implemented.
+				polled[1].Socket.RecvMessageBytes(0)
+			case polled[2].Events&zmq.POLLIN != 0: // control socket - treat like shell socket.
+				msgparts, _ = polled[2].Socket.RecvMessageBytes(0)
+				msg, ids, err := message.FromWire(msgparts, conn.Key)
+				if err != nil {
+					log.WithError(err).Error("cannot read message from wire")
+					continue
+				}
+				log.Debug("received control message: ", msg)
+				k.HandleShellMsg(message.Receipt{
+					Message:    *msg,
+					Identities: ids,
+					Connection: conn,
+				})
 			}
-			log.Debug("received control message: ", msg)
-			k.HandleShellMsg(message.Receipt{
-				Message:    *msg,
-				Identities: ids,
-				Connection: conn,
-			})
 		}
-	}
+	}()
 
 	return nil
 }
