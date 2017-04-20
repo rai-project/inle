@@ -48,10 +48,7 @@ func init() {
 func initConfig() {
 	opts := []config.Option{
 		config.AppName("inle"),
-		config.ConfigString(`
-app:
-  name: inle
-`),
+		config.ConfigString(""),
 		config.DebugMode(isDebug),
 		config.DebugMode(isVerbose),
 		config.ColorMode(isColor),
