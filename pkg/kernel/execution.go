@@ -55,7 +55,7 @@ func (k *Kernel) HandleExecuteRequest(receipt message.Receipt) error {
 		outContent.Execcount = k.ExecCounter
 		outContent.Data = make(map[string]string)
 
-		// lng, _ := lang.Detect(code)
+		// lng := linguist.Detect(code)
 		// pp.Println("lng = ", string(lng))
 		// _ = lng
 		outContent.Data["text/plain"] = fmt.Sprint("Hello.... got " + code + " ... detected the langauge to be ")
