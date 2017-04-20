@@ -38,5 +38,7 @@ dist/
 
 cmd/inline
 debug
+main
+inle
 
 .ipynb_checkpoints
