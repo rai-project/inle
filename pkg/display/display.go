@@ -10,3 +10,6 @@ var MimeTypes = []string{
 	"text/markdown",
 	"application/javascript",
 }
+
+
+// see https://github.com/JuliaLang/IJulia.jl/blob/master/src/inline.jl
