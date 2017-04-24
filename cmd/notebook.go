@@ -3,9 +3,12 @@ package cmd
 import (
 	"os"
 	"os/signal"
+	"path/filepath"
+	"strings"
 	"syscall"
 
 	"github.com/Unknwon/com"
+	"github.com/k0kubun/pp"
 	"github.com/pkg/errors"
 	"github.com/rai-project/inle/pkg/kernel"
 	"github.com/spf13/cobra"
@@ -27,7 +30,9 @@ var notebookCmd = &cobra.Command{
 			return errors.Wrapf(err, "unable to open connection file %v", connectionFile)
 		}
 
-		k, err := kernel.New(f)
+		id := getID(connectionFile)
+
+		k, err := kernel.New(id, f)
 		f.Close()
 
 		if err != nil {
@@ -46,6 +51,12 @@ var notebookCmd = &cobra.Command{
 	},
 }
 
+func getID(c string) string {
+	base := filepath.Base(c)
+	return strings.TrimSuffix(strings.TrimPrefix(base, "kernel-"), ".json")
+}
+
 func init() {
+	pp.WithLineInfo = true
 	RootCmd.AddCommand(notebookCmd)
 }

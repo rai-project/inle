@@ -88,7 +88,7 @@ func (k *Kernel) HandleExecuteRequest(receipt message.Receipt) error {
 			log.WithError(err).Error("unable to create exec code")
 		}
 
-		outContent.Data["text/plain"] = "got === " + sess.buf.String()
+		outContent.Data["text/plain"] = sess.buf.String()
 		defer sess.buf.Reset()
 		outContent.Metadata = make(map[string]interface{})
 		out.Content = outContent

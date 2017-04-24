@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 
+	"github.com/k0kubun/pp"
 	zmq "github.com/pebbe/zmq4"
 	"github.com/pkg/errors"
 	"github.com/rai-project/inle/pkg/connection"
@@ -12,12 +13,13 @@ import (
 )
 
 type Kernel struct {
+	id                string
 	done              chan struct{}
 	ExecCounter       int
 	connectionOptions *connection.Options
 }
 
-func New(connectionConfig io.Reader) (*Kernel, error) {
+func New(id string, connectionConfig io.Reader) (*Kernel, error) {
 	buf, err := ioutil.ReadAll(connectionConfig)
 	if err != nil {
 		return nil, errors.Wrap(err, "unable to read connectionConfig")
@@ -29,6 +31,7 @@ func New(connectionConfig io.Reader) (*Kernel, error) {
 	}
 
 	return &Kernel{
+		id:                id,
 		done:              make(chan struct{}, 1),
 		ExecCounter:       0,
 		connectionOptions: connectionOptions,
@@ -126,14 +129,20 @@ func (k *Kernel) HandleShellMsg(receipt message.Receipt) error {
 		k.HandleWithStatus(receipt, k.HandleKernelInfoRequest)
 	case message.ConnectRequestType:
 		k.HandleWithStatus(receipt, k.HandleConnectRequest)
-	// case message.CommOpenType:
-	// 	k.HandleWithStatus(receipt, k.HandleCommOpen)
+	case message.CommOpenType:
+		k.HandleWithStatus(receipt, k.HandleCommOpen)
+	case message.CommCloseType:
+		k.HandleWithStatus(receipt, k.HandleCommClose)
+	case message.CommInfoRequestType:
+		k.HandleWithStatus(receipt, k.HandleCommInfoRequest)
+	case message.CommMessageType:
+		k.HandleWithStatus(receipt, k.HandleCommMessage)
 	case message.ExecuteRequestType:
 		k.HandleWithStatus(receipt, k.HandleExecuteRequest)
 	case message.ShutdownRequestType:
 		k.HandleWithStatus(receipt, k.HandleShutdownRequest)
 	default:
-		err := errors.Errorf("Unhandled shell message: %v", receipt.Message.Header.Type)
+		err := errors.Errorf("Unhandled shell message: %v", pp.Sprint(receipt))
 		log.WithError(err).Error()
 		return err
 	}

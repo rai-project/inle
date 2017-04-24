@@ -1,6 +1,8 @@
 package kernel
 
-import "github.com/rai-project/inle/pkg/message"
+import (
+	"github.com/rai-project/inle/pkg/message"
+)
 
 // ConnectReply encodes the ports necessary for connecting to the kernel
 type ConnectReply struct {

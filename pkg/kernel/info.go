@@ -62,10 +62,11 @@ func (k *Kernel) HandleKernelInfoRequest(receipt message.Receipt) error {
 		Implementation:        config.App.Name,
 		ImplementationVersion: config.App.Version.Version,
 		LanguageInfo: KernelLanguageInfo{
-			Name:          "rai",
-			Version:       runtime.Version(),
-			Mimetype:      "application/x-rai", // text/plain would be possible, too
-			FileExtension: ".rai",
+			Name:           "rai",
+			CodeMirrorMode: "text/x-c++src",
+			Version:        runtime.Version(),
+			Mimetype:       "application/x-rai", // text/plain would be possible, too
+			FileExtension:  ".rai",
 		},
 		Banner: "RAI-Inle - https://github.com/rai-project/inle",
 	}
