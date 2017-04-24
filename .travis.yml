@@ -14,7 +14,18 @@ before_install:
   - sudo add-apt-repository ppa:saltstack/salt -y
   - sudo apt-get -qq update
   - sudo apt-get install glide -y
-  - sudo apt-get install libzmq libzmq-dev libczmq-dev libsodium-dev
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo apt-get -qq update
+  - sudo apt-get install -q -y cmake-data cmake
+  - sudo apt-get install -q -y g++-5
+  - export CXX="g++-5"
+  - cd /tmp
+  - wget https://github.com/zeromq/libzmq/releases/download/v4.2.2/zeromq-4.2.2.tar.gz
+  - tar xvf zeromq-4.2.2.tar.gz
+  - cd zeromq-4.2.2
+  - sudo ./configure
+  - sudo make -j7
+  - sudo make install
 install:
   - glide install
   - go get github.com/mjibson/esc
