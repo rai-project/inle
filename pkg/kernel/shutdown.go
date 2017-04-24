@@ -19,5 +19,8 @@ func (k *Kernel) HandleShutdownRequest(receipt message.Receipt) error {
 	reply.Content = ShutdownReply{restart}
 	receipt.SendResponse(receipt.Connection.ShellSocket, reply)
 	log.Debug("Shutting down in response to shutdown_request")
+
+	DefaultSessionManager.Flush()
+
 	return nil
 }

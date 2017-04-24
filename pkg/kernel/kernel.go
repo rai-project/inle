@@ -9,7 +9,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/rai-project/inle/pkg/connection"
 	"github.com/rai-project/inle/pkg/message"
-	"github.com/rai-project/logger"
 )
 
 type Kernel struct {
@@ -66,7 +65,9 @@ func (k *Kernel) Start() error {
 					log.WithError(err).Error("cannot read message from wire")
 					continue
 				}
-				logger.Println("received shell message: ", msg)
+				if false {
+					log.Println("received shell message: ", msg)
+				}
 				k.HandleShellMsg(message.Receipt{
 					Message:    *msg,
 					Identities: ids,
@@ -125,6 +126,8 @@ func (k *Kernel) HandleShellMsg(receipt message.Receipt) error {
 		k.HandleWithStatus(receipt, k.HandleKernelInfoRequest)
 	case message.ConnectRequestType:
 		k.HandleWithStatus(receipt, k.HandleConnectRequest)
+	// case message.CommOpenType:
+	// 	k.HandleWithStatus(receipt, k.HandleCommOpen)
 	case message.ExecuteRequestType:
 		k.HandleWithStatus(receipt, k.HandleExecuteRequest)
 	case message.ShutdownRequestType:

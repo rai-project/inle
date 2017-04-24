@@ -3,6 +3,7 @@ package message
 type MessageType string
 
 const (
+	ErrorReplyType        MessageType = "error"
 	CommCloseType         MessageType = "comm_close"
 	CommInfoRequestType   MessageType = "comm_info_request"
 	CommMessageType       MessageType = "comm_msg"

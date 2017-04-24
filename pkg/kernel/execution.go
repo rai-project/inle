@@ -1,8 +1,6 @@
 package kernel
 
 import (
-	"fmt"
-
 	"github.com/rai-project/inle/pkg/message"
 )
 
@@ -24,6 +22,8 @@ type ErrMsg struct {
 // reply messages.
 func (k *Kernel) HandleExecuteRequest(receipt message.Receipt) error {
 
+	content := make(map[string]interface{})
+
 	// Actual execution handling
 
 	reply, err := message.New(message.ExecuteReplyType, receipt.Message)
@@ -31,13 +31,38 @@ func (k *Kernel) HandleExecuteRequest(receipt message.Receipt) error {
 		return err
 	}
 
-	content := make(map[string]interface{})
 	reqcontent := receipt.Message.Content.(map[string]interface{})
 	code := reqcontent["code"].(string)
 	silent := reqcontent["silent"].(bool)
 	if !silent {
 		k.ExecCounter++
 	}
+
+	sessionName := receipt.Message.Header.Session
+
+	if !DefaultSessionManager.Has(sessionName) {
+		NewSession(sessionName)
+	}
+
+	sess, err := DefaultSessionManager.Get(sessionName)
+	if err != nil {
+		content["status"] = "error"
+		content["ename"] = "ERROR"
+		content["evalue"] = err.Error()
+		content["traceback"] = code
+		errormsg, merr := message.New(message.ErrorReplyType, receipt.Message)
+		if merr != nil {
+			log.WithError(err).Error("unable to create ErrorReplyType")
+			return err
+		}
+		errormsg.Content = ErrMsg{"Error", err.Error(), []string{sess.buf.String()}}
+		defer sess.buf.Reset()
+		receipt.SendResponse(receipt.Connection.IOPubSocket, errormsg)
+
+		reply.Content = content
+		return receipt.SendResponse(receipt.Connection.ShellSocket, reply)
+	}
+
 	content["execution_count"] = k.ExecCounter
 
 	// TODO:: Hookup
@@ -58,7 +83,13 @@ func (k *Kernel) HandleExecuteRequest(receipt message.Receipt) error {
 		// lng := linguist.Detect(code)
 		// pp.Println("lng = ", string(lng))
 		// _ = lng
-		outContent.Data["text/plain"] = fmt.Sprint("Hello.... got " + code + " ... detected the langauge to be ")
+
+		if err := sess.Exec(code); err != nil {
+			log.WithError(err).Error("unable to create exec code")
+		}
+
+		outContent.Data["text/plain"] = "got === " + sess.buf.String()
+		defer sess.buf.Reset()
 		outContent.Metadata = make(map[string]interface{})
 		out.Content = outContent
 		receipt.SendResponse(receipt.Connection.IOPubSocket, out)
