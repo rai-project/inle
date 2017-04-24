@@ -14,7 +14,7 @@ before_install:
   - sudo add-apt-repository ppa:saltstack/salt -y
   - sudo apt-get -qq update
   - sudo apt-get install glide -y
-  - sudo apt-get install libzmq4 libzmq4-dev
+  - sudo apt-get install libzmq libzmq-dev libczmq-dev libsodium-dev
 install:
   - glide install
   - go get github.com/mjibson/esc
