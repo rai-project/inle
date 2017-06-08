@@ -8,7 +8,7 @@ memo = "cd1464ff64c8f8d9213ec94e2a9b3958a2767e348a49fa4b6c00f9a45c867250"
 
 [[projects]]
   branch = "master"
-  name = "github.com/Sirupsen/logrus"
+  name = "github.com/sirupsen/logrus"
   packages = ["."]
   revision = "10f801ebc38b33738c9d17d50860f484a0988ff5"
 
